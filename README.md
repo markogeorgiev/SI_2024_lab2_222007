@@ -10,8 +10,102 @@
 
 ### Цикломатска комплексност
 
-### Тест случаи според критериумот  Every statement 
+Цикломатската комплексност е 8. Начинот на кој го добив тоа е со броење на регионите во CFG. 
 
-### Тест случаи според критериумот Every path
+### Тест случаи според критериумот  Every Branch 
+#### Test Case 1: allItems is null
+
+```
+@Test(expected = RuntimeException.class)
+public void testAllItemsNull() {
+    SILab2.checkCart(null, 100);
+}
+```
+
+#### Test Case 2: item.getName() == null and item.getName().length() == 0
+
+```
+@Test
+public void testItemNameNullOrEmpty() {
+    // Test for null
+    List<Item> items = Arrays.asList(new Item(null, "123456", 100, 0));
+    boolean result = SILab2.checkCart(items, 100);
+    assertTrue(result);
+    assertEquals("unknown", items.get(0).getName());
+    // Test for lenght == 0
+    items = Arrays.asList(new Item("", "123456", 100, 0));
+    result = SILab2.checkCart(items, 100);
+    assertTrue(result);
+    assertEquals("unknown", items.get(0).getName());
+}
+```
+
+#### Test Case 3: item.getBarcode() != null and valid barcode
+
+```
+@Test
+public void testValidBarcode() {
+    List<Item> items = Arrays.asList(new Item("item1", "123456", 100, 0));
+    boolean result = SILab2.checkCart(items, 100);
+    assertTrue(result);
+}
+```
+
+#### Test Case 4: Invalid barcode character
+
+```
+@Test(expected = RuntimeException.class)
+public void testInvalidBarcodeCharacter() {
+    List<Item> items = Arrays.asList(new Item("item1", "12345a", 100, 0));
+    SILab2.checkCart(items, 100);
+}
+```
+
+#### Test Case 5: item.getDiscount() > 0
+
+```
+@Test
+public void testItemWithDiscount() {
+    List<Item> items = Arrays.asList(new Item("item1", "123456", 100, 0.1f));
+    boolean result = SILab2.checkCart(items, 100);
+    assertTrue(result);
+}
+```
+
+#### Test Case 6: item.getPrice() > 300 and item.getDiscount() > 0 and barcode starts with '0'
+
+```
+@Test
+public void testAdditionalDiscount() {
+    List<Item> items = Arrays.asList(new Item("item1", "0123456", 400, 0.1f));
+    boolean result = SILab2.checkCart(items, 100);
+    assertTrue(result);
+}
+```
+
+#### Test Case 7: sum <= payment
+
+```
+@Test
+public void testSumLessThanOrEqualToPayment() {
+    List<Item> items = Arrays.asList(new Item("item1", "123456", 50, 0), new Item("item2", "789012", 30, 0));
+    boolean result = SILab2.checkCart(items, 100);
+    assertTrue(result);
+}
+```
+
+#### Test Case 8: sum > payment
+
+```
+@Test
+public void testSumGreaterThanPayment() {
+    List<Item> items = Arrays.asList(new Item("item1", "123456", 100, 0), new Item("item2", "789012", 50, 0));
+    boolean result = SILab2.checkCart(items, 100);
+    assertFalse(result);
+}
+```
+
+### Тест случаи според критериумот Multiple Condition за условот if (item.getPrice() > 300 && item.getDiscount() > 0 && item.getBarcode().charAt(0) == '0')
+
 
 ### Објаснување на напишаните unit tests
