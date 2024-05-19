@@ -107,5 +107,62 @@ public void testSumGreaterThanPayment() {
 
 ### Тест случаи според критериумот Multiple Condition за условот if (item.getPrice() > 300 && item.getDiscount() > 0 && item.getBarcode().charAt(0) == '0')
 
+```
+// Тест случај 1: Сите услови се исполнети
+    public void testAllConditionsMet() {
+        List<Item> items = Arrays.asList(new Item("item1", "012345", 400, 0.1f));
+        boolean result = SILab2.checkCart(items, 500);
+        assert result == true;
+    }
+
+    // Тест случај 2: Цена > 300 и попуст > 0, но прв знак на баркодот не е '0'
+    public void testFirstCharNotZero() {
+        List<Item> items = Arrays.asList(new Item("item1", "112345", 400, 0.1f));
+        boolean result = SILab2.checkCart(items, 500);
+        assert result == false;
+    }
+
+    // Тест случај 3: Цена > 300, но попустот е 0, и првиот знак на баркодот е '0'
+    public void testNoDiscount() {
+        List<Item> items = Arrays.asList(new Item("item1", "012345", 400, 0));
+        boolean result = SILab2.checkCart(items, 500);
+        assert result == false;
+    }
+
+    // Тест случај 4: Сите услови се исполнети, но цената е под 300
+    public void testPriceBelowThreshold() {
+        List<Item> items = Arrays.asList(new Item("item1", "012345", 200, 0.1f));
+        boolean result = SILab2.checkCart(items, 300);
+        assert result == false;
+    }
+
+    // Тест случај 5: Сите услови се исполнети, но нема попуст
+    public void testNoDiscountApplied() {
+        List<Item> items = Arrays.asList(new Item("item1", "012345", 400, 0));
+        boolean result = SILab2.checkCart(items, 500);
+        assert result == false;
+    }
+
+    // Тест случај 6: Нема попуст и првиот знак на баркодот не е '0', цената не е битна
+    public void testNoDiscountAndFirstCharNotZero() {
+        List<Item> items = Arrays.asList(new Item("item1", "112345", 400, 0));
+        boolean result = SILab2.checkCart(items, 500);
+        assert result == false;
+    }
+
+    // Тест случај 7: Нема попуст и првиот знак на баркодот е '0', цената не е битна
+    public void testNoDiscountAndFirstCharZero() {
+        List<Item> items = Arrays.asList(new Item("item1", "012345", 400, 0));
+        boolean result = SILab2.checkCart(items, 500);
+        assert result == false;
+    }
+```
 
 ### Објаснување на напишаните unit tests
+
+#### Тест за проверка на кошничка со валидна уплата:
+Овој тест проверува дали методата checkCart враќа true кога вкупната цена на предметите во кошничката е помала или еднаква на дадената уплата. Во овој тест се додаваат неколку предмети во листата items, секој со свое име, баркод, цена и попуст. Потоа се повикува методата checkCart со листата на предмети и уплатата од 400. Овој тест се очекува да биде успешен бидејќи вкупната цена на предметите во кошничката е 450 (100 со попуст од 10%, 200 со попуст од 5%, и 150 без попуст), што е помало од уплатата од 400.
+
+#### Тест за проверка на кошничка со невалидна уплата:
+Овој тест проверува дали методата checkCart враќа false кога вкупната цена на предметите во кошничката е поголема од дадената уплата. Исто како и претходниот тест, се додаваат предмети во items, потоа се повикува методата checkCart со листата на предмети и уплатата од 250. Овој пат тестот се очекува да се фрли како неуспешен, бидејќи вкупната цена на предметите во кошничката (450) е поголема од дадената уплата (250).
+
