@@ -2,8 +2,6 @@
 
 ## Марко Георгиев 222007
 
-### Група на код: 
-
 ###  Control Flow Graph
 
 ![SI_Lab2_CFG_Image_v5](https://github.com/markogeorgiev/SI_2024_lab2_222007/assets/132363580/dc965db0-c116-4730-8fe5-c6b2c7bdc2b3)
