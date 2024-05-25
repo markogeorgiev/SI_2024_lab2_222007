@@ -6,7 +6,8 @@
 
 ###  Control Flow Graph
 
-![SI_Lab2_CFG_Image_v4](https://github.com/markogeorgiev/SI_2024_lab2_222007/assets/132363580/ae9fddda-1165-41f1-be12-5b906565bd77)
+![SI_Lab2_CFG_Image_v5](https://github.com/markogeorgiev/SI_2024_lab2_222007/assets/132363580/dc965db0-c116-4730-8fe5-c6b2c7bdc2b3)
+
 
 ### Цикломатска комплексност
 
