@@ -6,11 +6,11 @@
 
 ###  Control Flow Graph
 
-![CFD Image](https://github.com/markogeorgiev/SI_2024_lab2_222007/assets/132363580/0a5260a6-374d-43b6-97d8-f6d5bce5731f)
+![SI_Lab2_CFG_Image_v4](https://github.com/markogeorgiev/SI_2024_lab2_222007/assets/132363580/ae9fddda-1165-41f1-be12-5b906565bd77)
 
 ### Цикломатска комплексност
 
-Цикломатската комплексност е 8. Начинот на кој го добив тоа е со броење на регионите во CFG. 
+Цикломатската комплексност е 9. Начинот на кој го добив тоа е со броење на регионите во CFG. (Регионите се означени со Rn, т.ш. n = n-тиот по ред регион.
 
 ### Тест случаи според критериумот  Every Branch 
 #### Test Case 1: allItems is null
